@@ -12,20 +12,20 @@ require("dotenv").config();
 
 // userApp.use(middleware);
 
-userApp.get("/get-users", async (request, response) => {
-  //get usercollection object
-  const userCollectionObject = request.app.get("userCollectionObject");
-  //get data using find() method
-  const users = await userCollectionObject.find().toArray();
-  //send response
-  response.send({ message: "all users", payload: users });
-});
-userApp.get("/get-user/:id", async (request, response) => {
-  const userCollectionObject = request.app.get("userCollectionObject");
-  const userId = +request.params.id;
-  const user = await userCollectionObject.findOne({ id: userId });
-  response.send({ message: "one user", payload: user });
-});
+// userApp.get("/get-users", async (request, response) => {
+//   //get usercollection object
+//   const userCollectionObject = request.app.get("userCollectionObject");
+//   //get data using find() method
+//   const users = await userCollectionObject.find().toArray();
+//   //send response
+//   response.send({ message: "all users", payload: users });
+// });
+// userApp.get("/get-user/:id", async (request, response) => {
+//   const userCollectionObject = request.app.get("userCollectionObject");
+//   const userId = +request.params.id;
+//   const user = await userCollectionObject.findOne({ id: userId });
+//   response.send({ message: "one user", payload: user });
+// });
 userApp.post("/create-user", async (request, response) => {
   const userCollectionObject = request.app.get("userCollectionObject");
   const userObj = request.body;
@@ -42,20 +42,20 @@ userApp.post("/create-user", async (request, response) => {
     response.send({ message: "User Created" });
   }
 });
-userApp.put("/update-user", async (request, response) => {
-  const userCollectionObject = request.app.get("userCollectionObject");
-  const userObj = request.body;
-  await userCollectionObject.updateOne(
-    { username: userObj.username },
-    { $set: { ...userObj } }
-  );
-});
-userApp.delete("/remove-user/:id", async (request, response) => {
-  const userCollectionObject = request.app.get("userCollectionObject");
-  const userId = +request.params.id;
-  const user = await userCollectionObject.deleteOne({ id: userId });
-  response.send({ message: "User Deleted" });
-});
+// userApp.put("/update-user", async (request, response) => {
+//   const userCollectionObject = request.app.get("userCollectionObject");
+//   const userObj = request.body;
+//   await userCollectionObject.updateOne(
+//     { username: userObj.username },
+//     { $set: { ...userObj } }
+//   );
+// });
+// userApp.delete("/remove-user/:id", async (request, response) => {
+//   const userCollectionObject = request.app.get("userCollectionObject");
+//   const userId = +request.params.id;
+//   const user = await userCollectionObject.deleteOne({ id: userId });
+//   response.send({ message: "User Deleted" });
+// });
 
 userApp.post("/login", async (request, response) => {
   const userCollectionObject = request.app.get("userCollectionObject");
